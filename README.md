@@ -1,4 +1,9 @@
 # SARS-API
+blog: https://towardsdatascience.com/fastapi-cloud-database-loading-with-python-1f531f1d438a
+
+
+## Set up
+- copy sample.env to .env
 
 ## Dev Instructions
 Run `pipenv install --dev` to install the env.  
