@@ -1,3 +1,24 @@
+# FastAPI microservice with DataBase
+This project is meant to create a basic example on how to create a micro-service with fast-api.
+
+## Features
+- Local DB
+- GCP Cloud Run and GCP SQL integration
+
+## SetUp and Run
+
+### SetUp and Run Locally with Local DB
+- `./run_load_local_db.sh`
+- `./run_app_local_db.sh`
+
+### Build and Deploy to Cloud Run
+- TODO: Instruction to get and set up the right env values
+- `./build_and_deploy_to_cloud_run.sh`
+
+## TODO:
+- Extract example model and endpoint to its own module
+
+
 # SARS-API
 blog: https://towardsdatascience.com/fastapi-cloud-database-loading-with-python-1f531f1d438a
 

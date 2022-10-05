@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 required_env_keys='
     GCP_PROJECT_ID

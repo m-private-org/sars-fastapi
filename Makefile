@@ -46,10 +46,13 @@ shell-load::
 gcp-mysql-connect::
 	mysql -u root -p -h 34.133.205.132
 
-run-app::
-	docker-compose run --rm --service-ports app
+run-app-local-db::
+	docker-compose -f docker-compose.yml -f docker-compose.local_db.yml --profile run_app up
+
+run-load_local_data::
+	docker-compose -f docker-compose.yml -f docker-compose.local_db.yml --profile load_local_data run --rm loader
 
 
-# https://cloud.google.com/sdk/gcloud/reference/auth/configure-docker#REGISTRIES
-# gcloud auth configure-docker
-# gcloud auth configure-docker gcr.io
+run-load_local_data_bash::
+	docker-compose -f docker-compose.yml -f docker-compose.local_db.yml --profile load_local_data run --rm loader /bin/bash
+
