@@ -6,8 +6,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
+from ..config import settings
+
 # if we are running in a GCP environment, use the unix socket
-gcp_service_account = os.getenv("GCP_SERVICE_ACCOUNT")
+gcp_service_account = settings.GCP_SERVICE_ACCOUNT
 if gcp_service_account:
     unix_socket_path = f"/cloudsql/{gcp_service_account}"
     db_query = {"unix_socket": unix_socket_path}
@@ -19,11 +21,11 @@ engine = sqlalchemy.create_engine(
         # mysql+pymysql://<db_user>:<db_pass>@/<db_name>?unix_socket=<socket_path>/<cloud_sql_instance_name>
         sqlalchemy.engine.url.URL.create(
             drivername="mysql+pymysql",
-            username=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASS"),
-            database=os.getenv("DB_NAME"),
-            host=os.getenv("DB_HOST"),
-            port=os.getenv("DB_PORT"),
+            username=settings.DB_USER,
+            password=settings.DB_PASS,
+            database=settings.DB_NAME,
+            host=settings.DB_HOST,
+            port=settings.DB_PORT,
             query=db_query,
         )
     )

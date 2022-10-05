@@ -17,6 +17,7 @@ This project is meant to create a basic example on how to create a micro-service
 
 ## TODO:
 - Extract example model and endpoint to its own module
+- Use pydantic settings: https://fastapi.tiangolo.com/advanced/settings/#pydantic-settings
 
 
 # SARS-API

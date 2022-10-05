@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.types import Date
-from .database import Base
+from ..db.database import Base, engine
 
 
 class Record(Base):

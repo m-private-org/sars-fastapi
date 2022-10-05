@@ -1,2 +1,2 @@
-import app.models
-import app.schemas
+import app.records.models
+import app.records.schemas
