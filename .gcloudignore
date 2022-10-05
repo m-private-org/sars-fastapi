@@ -3,7 +3,6 @@
 **copy.*
 
 # Std
-Dockerfile
 README.md
 *.pyc
 *.pyo

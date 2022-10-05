@@ -1,3 +1,5 @@
+import os
+
 from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException
@@ -33,6 +35,17 @@ def get_db():
 @app.get("/")
 def main():
     return RedirectResponse(url="/docs/")
+
+@app.get("/ping/")
+def ping():
+    return 'pong'
+
+@app.get("/health/")
+def health():
+    return {
+        "env_version": os.getenv("env_version"),
+        "m-private-mysql-root-pass": os.getenv("m-private-mysql-root-pass"),
+    }
 
 
 @app.get("/records/", response_model=List[schemas.Record])

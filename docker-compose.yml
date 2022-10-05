@@ -1,44 +1,50 @@
 version: "3.9"
 services:
-    phpmyadmin:
-        image: phpmyadmin
-        # restart: always
-        ports:
-            - "8080:80"
-        environment:
-            - PMA_ARBITRARY=1
-        depends_on: 
-            - mysql
+    # phpmyadmin:
+    #     image: phpmyadmin
+    #     # restart: always
+    #     ports:
+    #         - "8080:80"
+    #     environment:
+    #         - PMA_ARBITRARY=1
+    #     depends_on: 
+    #         - mysql
 
-    mysql:
-        image: mysql:5.7
-        # restart: always
-        environment:
-            MYSQL_ROOT_PASSWORD: password
-            MYSQL_DATABASE: database
-        volumes:
-            - sars-datavolume:/var/lib/mysql
+    # mysql:
+    #     image: mysql:5.7
+    #     # restart: always
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: password
+    #         MYSQL_DATABASE: database
+    #     volumes:
+    #         - sars-datavolume:/var/lib/mysql
     app:
         build:
             context: ./
             dockerfile: Dockerfile
+        env_file: .env
         environment: 
             - PORT=8000
-            - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
+            # - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
         ports:
-            - "80:8000"
-        depends_on: 
-            - mysql
-            - loader
+            - "8000:8000"
+        volumes:
+            - .:/app
+        # depends_on: 
+            # - mysql
+            # - loader
     loader:
         build:
             context: ./
             dockerfile: Dockerfile
-        environment: 
-            - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
+        volumes:
+            - .:/app
+        env_file: .env
+        # environment: 
+        #     - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
         command: python load.py
-        depends_on: 
-            - mysql
+        # depends_on: 
+        #     - mysql
 
 volumes:
   sars-datavolume:
