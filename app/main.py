@@ -10,6 +10,7 @@ from starlette.responses import RedirectResponse
 from . import base_endpoints
 from .records import endpoints as record_endpoints
 from .notes import endpoints as note_endpoints
+from .fake_auth import endpoints as fake_auth_endpoints
 
 
 
@@ -27,5 +28,7 @@ app.add_middleware(
 
 # App endpoints
 app.include_router(base_endpoints.router)
+app.include_router(fake_auth_endpoints.router)
+
 app.include_router(record_endpoints.router, prefix="/records")
 app.include_router(note_endpoints.router, prefix="/notes")

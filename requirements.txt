@@ -17,3 +17,8 @@ pymysql
 sqlalchemy
 starlette
 uvicorn
+
+# Auth 
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart

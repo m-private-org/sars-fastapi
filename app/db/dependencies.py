@@ -7,6 +7,8 @@ from .database import SessionLocal, engine
 # TODO: find a better way to do this
 from ..records import models as records_models
 from ..notes import models as notes_models
+from ..fake_auth import models as auth_models
+
 records_models.Base.metadata.create_all(bind=engine)
 
 # Dependency
