@@ -18,6 +18,7 @@ This project is meant to create a basic example on how to create a micro-service
 ## TODO:
 - Extract example model and endpoint to its own module
 - Use pydantic settings: https://fastapi.tiangolo.com/advanced/settings/#pydantic-settings
+- Find way to properly create tables. In app.db.depencecies We create tables by importing the models an calling `records_models.Base.metadata.create_all(bind=engine)`. That smells off
 
 
 # SARS-API

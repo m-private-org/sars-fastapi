@@ -7,7 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
 
 # Local
-from  .records import endpoints
+from . import base_endpoints
+from .records import endpoints as record_endpoints
+from .notes import endpoints as note_endpoints
+
 
 
 app = FastAPI()
@@ -20,20 +23,9 @@ app.add_middleware(
     allow_credentials=True,
 )
 
-@app.get("/")
-def main():
-    return RedirectResponse(url="/docs/")
 
-@app.get("/ping/")
-def ping():
-    return 'pong'
-
-@app.get("/health/")
-def health():
-    return {
-        "env_version": os.getenv("env_version"),
-        "m-private-mysql-root-pass": os.getenv("m-private-mysql-root-pass"),
-    }
 
 # App endpoints
-app.include_router(endpoints.router, prefix="/records")
+app.include_router(base_endpoints.router)
+app.include_router(record_endpoints.router, prefix="/records")
+app.include_router(note_endpoints.router, prefix="/notes")
